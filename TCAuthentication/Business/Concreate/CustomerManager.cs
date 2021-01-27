@@ -9,9 +9,9 @@ namespace Business.Concreate
     {
         TCNumberServices _TCNumberServices;
 
-        public CustomerManager(TCNumberServices tCNumberServices)
+        public CustomerManager(TCNumberServices TCNumberServices)
         {
-            _TCNumberServices = tCNumberServices;
+            _TCNumberServices = TCNumberServices;
         }
 
         public bool Add(Customer customer)
