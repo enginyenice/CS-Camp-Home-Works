@@ -8,7 +8,7 @@ namespace TCAuthentication
     {
         private static void Main(string[] args)
         {
-            CustomerManager customerManager = new CustomerManager();
+            CustomerManager customerManager = new CustomerManager(new Services.Concreate.TCNumberServices());
             Customer customer = new Customer();
             customer.TCNumber = 34880000000; //long
             customer.firstName = "Engin"; // string

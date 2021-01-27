@@ -7,11 +7,17 @@ namespace Business.Concreate
 {
     public class CustomerManager : ICustomerManager
     {
+        TCNumberServices _TCNumberServices;
+
+        public CustomerManager(TCNumberServices tCNumberServices)
+        {
+            _TCNumberServices = tCNumberServices;
+        }
+
         public bool Add(Customer customer)
         {
             Console.WriteLine("Customer Manager");
-            TCNumberServices services = new TCNumberServices();
-            bool status = services.CheckIt(customer);
+            bool status = _TCNumberServices.CheckIt(customer);
             if (status)
             {
                 Console.WriteLine("Customer Add");
