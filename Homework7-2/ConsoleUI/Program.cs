@@ -5,9 +5,9 @@ using System;
 
 namespace ConsoleUI
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             CarManager carManager = new CarManager(new InMemoryCarDal());
 
@@ -22,16 +22,11 @@ namespace ConsoleUI
             Console.WriteLine("---Get All---");
             foreach (var car in carManager.GetAll())
             {
-                Console.WriteLine("Id: {0} BrandId: {1} ColorId: {2} DailyPrice: {3} ModelYear: {4} Description: {5}",car.Id,car.BrandId,car.ColorId,car.DailyPrice,car.ModelYear,car.Description);
+                Console.WriteLine("Id: {0} BrandId: {1} ColorId: {2} DailyPrice: {3} ModelYear: {4} Description: {5}", car.Id, car.BrandId, car.ColorId, car.DailyPrice, car.ModelYear, car.Description);
             }
             Console.WriteLine("---Get By Id---");
             Car car3 = carManager.GetById(2);
             Console.WriteLine("Id: {0} BrandId: {1} ColorId: {2} DailyPrice: {3} ModelYear: {4} Description: {5}", car3.Id, car3.BrandId, car3.ColorId, car3.DailyPrice, car3.ModelYear, car3.Description);
-
-
-
-
-
         }
     }
 }
