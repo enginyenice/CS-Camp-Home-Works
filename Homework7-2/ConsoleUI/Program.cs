@@ -11,11 +11,11 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new InMemoryCarDal());
 
-            Car car1 = new Car { Id = 3, BrandId = 3, ColorId = 3, DailyPrice = 35, ModelYear = 2000, Description = "Tofaş Şahin 1.6" };
-            Car car2 = new Car { Id = 4, BrandId = 3, ColorId = 3, DailyPrice = 35, ModelYear = 2000, Description = "Tofaş Şahin 1.6S" };
+            Car car1 = new Car { Id = 3, BrandId = 3, ColorId = 3, DailyPrice = 35, ModelYear = 2000, Description = "Lokal boya mevcut" };
+            Car car2 = new Car { Id = 4, BrandId = 3, ColorId = 3, DailyPrice = 35, ModelYear = 2000, Description = "10.000TL hasar kaydı var." };
             carManager.Add(car1);
             carManager.Add(car2);
-            car2.Description = "Tofaş Şahin S";
+            car2.Description = "12.500TL hasar kaydı var.";
             carManager.Update(car2);
             carManager.Delete(car1);
 
