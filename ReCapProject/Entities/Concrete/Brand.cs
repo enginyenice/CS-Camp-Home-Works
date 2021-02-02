@@ -1,6 +1,4 @@
-﻿using Entities.Abstract;
-
-namespace Entities.Concrete
+﻿namespace Entities.Concrete
 {
     public class Brand : BaseEntity
     {

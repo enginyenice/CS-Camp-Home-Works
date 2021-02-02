@@ -1,17 +1,13 @@
 ﻿using Business.Abstract;
 using DataAccess;
-using Entities.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
     public class BaseManager<TEntity> : IBaseService<TEntity> where TEntity : BaseEntity
     {
-       
-         readonly IBaseRepository<TEntity> _baseService;
+        private readonly IBaseRepository<TEntity> _baseService;
 
         public BaseManager(IBaseRepository<TEntity> baseService)
         {
@@ -42,6 +38,5 @@ namespace Business.Concrete
         {
             _baseService.Update(entity);
         }
-       
     }
 }

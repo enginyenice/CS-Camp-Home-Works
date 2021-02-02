@@ -1,13 +1,10 @@
-﻿using Entities.Abstract;
-using Entities.Concrete;
-using System;
+﻿using Entities.Concrete;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DataAccess.Concrete.InMemory
 {
-    public abstract class InMemoryBaseDal<TEntity> : IBaseRepository<TEntity> where TEntity: BaseEntity
+    public abstract class InMemoryBaseDal<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
         public readonly List<TEntity> _entities;
 
@@ -38,6 +35,5 @@ namespace DataAccess.Concrete.InMemory
         }
 
         public abstract void Update(TEntity entity);
-        
     }
 }

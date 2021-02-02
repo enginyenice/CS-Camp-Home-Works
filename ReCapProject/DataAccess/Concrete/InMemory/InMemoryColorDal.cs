@@ -1,6 +1,4 @@
-﻿using DataAccess.Abstract;
-using Entities.Concrete;
-using System.Collections.Generic;
+﻿using Entities.Concrete;
 using System.Linq;
 
 namespace DataAccess.Concrete.InMemory

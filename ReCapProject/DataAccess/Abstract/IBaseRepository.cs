@@ -1,5 +1,4 @@
-﻿using Entities.Abstract;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 using System.Collections.Generic;
 
 namespace DataAccess

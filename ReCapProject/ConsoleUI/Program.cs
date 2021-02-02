@@ -7,9 +7,10 @@ namespace ConsoleUI
 {
     internal class Program
     {
-        static CarManager carManager;
-        static BrandManager brandManager;
-        static ColorManager colorManager;
+        private static CarManager carManager;
+        private static BrandManager brandManager;
+        private static ColorManager colorManager;
+
         private static void Main()
         {
             carManager = new CarManager(new InMemoryCarDal());
@@ -17,10 +18,8 @@ namespace ConsoleUI
             colorManager = new ColorManager(new InMemoryColorDal());
             AddData();
             GetAll();
-
-
-
         }
+
         private static void AddData()
         {
             // Add Car
@@ -34,7 +33,6 @@ namespace ConsoleUI
             carManager.Add(car4);
             car2.Description = "12.500TL hasar kaydı var.";
             carManager.Update(car2);
-            carManager.Delete(car1);
 
             // Add Brand
             Brand brand1 = new Brand { Id = 1, Name = "Fiat Egea 1.3 Multijet Easy" };
@@ -57,9 +55,9 @@ namespace ConsoleUI
             colorManager.Add(color3);
             colorManager.Add(color4);
         }
+
         private static void GetAll()
         {
-
             Console.WriteLine("---Get All---");
 
             foreach (var car in carManager.GetAll())
