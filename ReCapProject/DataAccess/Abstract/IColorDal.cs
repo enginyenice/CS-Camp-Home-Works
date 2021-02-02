@@ -2,7 +2,7 @@
 
 namespace DataAccess.Abstract
 {
-    public interface ICarDal : IBaseRepository<Car>
+    public interface IColorDal : IBaseRepository<Color>
     {
     }
 }

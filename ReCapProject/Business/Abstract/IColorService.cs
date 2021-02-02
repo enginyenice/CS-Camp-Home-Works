@@ -2,7 +2,7 @@
 
 namespace Business.Abstract
 {
-    public interface ICarService : IBaseService<Car>
+    public interface IColorService : IBaseService<Color>
     {
     }
 }

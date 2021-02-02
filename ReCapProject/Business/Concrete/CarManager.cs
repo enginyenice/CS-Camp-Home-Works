@@ -7,7 +7,7 @@ namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-        private ICarDal _carDal;
+        private readonly ICarDal _carDal;
 
         public CarManager(ICarDal carDal)
         {
