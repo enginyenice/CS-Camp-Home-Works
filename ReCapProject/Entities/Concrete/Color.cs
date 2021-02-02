@@ -1,4 +1,6 @@
-﻿namespace Entities.Concrete
+﻿using Entities.Abstract;
+
+namespace Entities.Concrete
 {
     public class Color : BaseEntity
     {

@@ -1,42 +1,12 @@
-﻿using Business.Abstract;
-using DataAccess.Abstract;
+﻿using DataAccess;
 using Entities.Concrete;
-using System.Collections.Generic;
 
 namespace Business.Concrete
 {
-    public class CarManager : ICarService
+    public class CarManager : BaseManager<Car>
     {
-        private readonly ICarDal _carDal;
-
-        public CarManager(ICarDal carDal)
+        public CarManager(IBaseRepository<Car> baseService) : base(baseService)
         {
-            _carDal = carDal;
-        }
-
-        public void Add(Car car)
-        {
-            _carDal.Add(car);
-        }
-
-        public void Delete(Car car)
-        {
-            _carDal.Delete(car);
-        }
-
-        public List<Car> GetAll()
-        {
-            return _carDal.GetAll();
-        }
-
-        public Car GetById(int id)
-        {
-            return _carDal.GetById(id);
-        }
-
-        public void Update(Car car)
-        {
-            _carDal.Update(car);
         }
     }
 }
