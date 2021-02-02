@@ -5,7 +5,7 @@ using System;
 
 namespace ConsoleUI
 {
-    internal class Program
+    internal static class Program
     {
         private static CarManager carManager;
         private static BrandManager brandManager;
