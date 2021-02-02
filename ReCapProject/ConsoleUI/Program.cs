@@ -59,7 +59,6 @@ namespace ConsoleUI
         private static void GetAll()
         {
             Console.WriteLine("---Get All---");
-
             foreach (var car in carManager.GetAll())
             {
                 Console.WriteLine("Id:          {0}\n" +
