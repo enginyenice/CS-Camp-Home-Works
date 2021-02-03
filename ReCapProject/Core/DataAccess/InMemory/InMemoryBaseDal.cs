@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DataAccess.Concrete.InMemory
+namespace Core.DataAccess.InMemory
 {
     public abstract class InMemoryBaseDal<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
         public readonly List<TEntity> _entities;
 
-        public InMemoryBaseDal()
+        protected InMemoryBaseDal()
         {
             _entities = new List<TEntity>();
         }

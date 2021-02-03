@@ -1,9 +1,8 @@
-﻿using Business.Abstract;
-using DataAccess;
+﻿using Core.DataAccess;
 using Entities.Concrete;
 using System.Collections.Generic;
 
-namespace Business.Concrete
+namespace Core.Business
 {
     public class BaseManager<TEntity> : IBaseService<TEntity> where TEntity : BaseEntity
     {

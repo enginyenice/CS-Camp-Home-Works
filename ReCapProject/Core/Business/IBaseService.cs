@@ -1,9 +1,9 @@
-﻿using Entities.Concrete;
+﻿using Entities.Abstract;
 using System.Collections.Generic;
 
-namespace DataAccess
+namespace Core.Business
 {
-    public interface IBaseRepository<TEntity> where TEntity : BaseEntity
+    public interface IBaseService<TEntity> where TEntity : IEntity
     {
         TEntity GetById(int id);
 
