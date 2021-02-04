@@ -1,9 +1,8 @@
-﻿using Core.Business;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 
 namespace Business.Abstract
 {
-    internal interface IBrandService : IBaseService<Brand>
+    public interface IBrandService : IBaseService<Brand>
     {
     }
 }

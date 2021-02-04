@@ -1,9 +1,8 @@
-﻿using Core.DataAccess;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface IColorDal : IBaseRepository<Color>
+    public interface IColorDal : IEntityRepository<Color>
     {
     }
 }

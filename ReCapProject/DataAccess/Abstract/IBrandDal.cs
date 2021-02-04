@@ -1,9 +1,8 @@
-﻿using Core.DataAccess;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface IBrandDal : IBaseRepository<Brand>
+    public interface IBrandDal : IEntityRepository<Brand>
     {
     }
 }
