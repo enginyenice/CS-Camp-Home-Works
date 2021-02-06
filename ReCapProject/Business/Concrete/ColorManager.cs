@@ -26,7 +26,7 @@ namespace Business.Concrete
 
         public Color Get(int id)
         {
-            return _colorDal.Get(p => p.Id == id);
+            return _colorDal.Get(p => p.ColorId == id);
         }
 
         public List<Color> GetAll()

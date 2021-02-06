@@ -1,4 +1,4 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System.Collections.Generic;
 
 namespace Business.Abstract

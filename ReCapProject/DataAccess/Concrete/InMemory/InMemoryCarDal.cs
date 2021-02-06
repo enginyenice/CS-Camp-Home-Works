@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,10 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>
             {
-                new Car {Id=1,BrandId=1,ColorId=1,DailyPrice=55,ModelYear=1998,Description="Car Item 1"},
-                new Car {Id=2,BrandId=2,ColorId=2,DailyPrice=55,ModelYear=1998,Description="Car Item 2"},
-                new Car {Id=3,BrandId=3,ColorId=3,DailyPrice=55,ModelYear=1998,Description="Car Item 3"},
-                new Car {Id=4,BrandId=4,ColorId=4,DailyPrice=55,ModelYear=1998,Description="Car Item 4"}
+                new Car {CarId=1,BrandId=1,ColorId=1,DailyPrice=55,ModelYear=1998,Description="Car Item 1"},
+                new Car {CarId=2,BrandId=2,ColorId=2,DailyPrice=55,ModelYear=1998,Description="Car Item 2"},
+                new Car {CarId=3,BrandId=3,ColorId=3,DailyPrice=55,ModelYear=1998,Description="Car Item 3"},
+                new Car {CarId=4,BrandId=4,ColorId=4,DailyPrice=55,ModelYear=1998,Description="Car Item 4"}
             };
         }
 
@@ -29,7 +30,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Car entity)
         {
-            Car DeleteOfCar = _cars.SingleOrDefault(p => p.Id == entity.Id);
+            Car DeleteOfCar = _cars.SingleOrDefault(p => p.CarId == entity.CarId);
             _cars.Remove(DeleteOfCar);
         }
 
@@ -50,12 +51,17 @@ namespace DataAccess.Concrete.InMemory
 
         public Car GetById(int id)
         {
-            return _cars.SingleOrDefault(p => p.Id == id);
+            return _cars.SingleOrDefault(p => p.CarId == id);
+        }
+
+        public List<CarDetailDto> GetCarsDetail()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car entity)
         {
-            Car UpdateOfCar = _cars.SingleOrDefault(p => p.Id == entity.Id);
+            Car UpdateOfCar = _cars.SingleOrDefault(p => p.CarId == entity.CarId);
             UpdateOfCar.BrandId = entity.BrandId;
             UpdateOfCar.ColorId = entity.ColorId;
             UpdateOfCar.DailyPrice = entity.DailyPrice;
