@@ -22,37 +22,47 @@ namespace ConsoleUI
             ColorManager colorManager = new ColorManager(new EfColorDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
 
-            colorManager.Add(new Color { ColorName = "Siyah" });
-            colorManager.Add(new Color { ColorName = "Beyaz" });
-            colorManager.Add(new Color { ColorName = "Mavi" });
-            colorManager.Add(new Color { ColorName = "Gri" });
-            colorManager.Add(new Color { ColorName = "Kırmızı" });
+            
+            //Color Add 
+            Console.WriteLine(colorManager.Add(new Color { ColorName = "Mor" }).Message);
+            Console.WriteLine(colorManager.Add(new Color { ColorName = "Pembe" }).Message);
+            Console.WriteLine(colorManager.Add(new Color { ColorName = "Lacivert" }).Message);
+            Console.WriteLine(colorManager.Add(new Color { ColorName = "Yeşil" }).Message);
+            Console.WriteLine(colorManager.Add(new Color { ColorName = "Eflatun" }).Message);
 
-            brandManager.Add(new Brand { BrandName = "BMW" });
-            brandManager.Add(new Brand { BrandName = "Mercedes" });
-            brandManager.Add(new Brand { BrandName = "Peugeot" });
-            brandManager.Add(new Brand { BrandName = "Volkswagen" });
-            brandManager.Add(new Brand { BrandName = "Renault" });
+            //Brand Add
+            Console.WriteLine(brandManager.Add(new Brand { BrandName = "Ferrari" }).Message);
+            Console.WriteLine(brandManager.Add(new Brand { BrandName = "Porshce" }).Message);
+            Console.WriteLine(brandManager.Add(new Brand { BrandName = "Tesla" }).Message);
+            Console.WriteLine(brandManager.Add(new Brand { BrandName = "Suziki" }).Message);
+            Console.WriteLine(brandManager.Add(new Brand { BrandName = "Toyota" }).Message);
 
-            carManager.Add(new Car { BrandId = 1, ColorId = 1, DailyPrice = 200, ModelYear = 2001, Description = "Sadece şirketlere kiralık" });
-            carManager.Add(new Car { BrandId = 2, ColorId = 3, DailyPrice = 230, ModelYear = 2005, Description = "Sadece bireysel kiralık" });
-            carManager.Add(new Car { BrandId = 3, ColorId = 5, DailyPrice = 300, ModelYear = 2010, Description = "En fazla 5 gün kiralanabilir" });
-            carManager.Add(new Car { BrandId = 4, ColorId = 2, DailyPrice = 150, ModelYear = 1990, Description = "Nostalji" });
-            carManager.Add(new Car { BrandId = 5, ColorId = 3, DailyPrice = 900, ModelYear = 2018, Description = "Şehir dışına kiralık değildir." });
-            carManager.Add(new Car { BrandId = 1, ColorId = 1, DailyPrice = 100, ModelYear = 1985, Description = "Sağlam getir yeter" });
+            //Car Add
+            Console.WriteLine(carManager.Add(new Car { BrandId = 7, ColorId = 2, DailyPrice = 1200, ModelYear = 2001, Description = "Sadece şirketlere kiralık" }).Message);
+            Console.WriteLine(carManager.Add(new Car { BrandId = 6, ColorId = 3, DailyPrice = 3000, ModelYear = 2010, Description = "En fazla 5 gün kiralanabilir" }).Message);
+            Console.WriteLine(carManager.Add(new Car { BrandId = 5, ColorId = 4, DailyPrice = 1050, ModelYear = 1990, Description = "Nostalji" }).Message);
+            Console.WriteLine(carManager.Add(new Car { BrandId = 4, ColorId = 5, DailyPrice = 9000, ModelYear = 2018, Description = "Şehir dışına kiralık değildir." }).Message);
+            Console.WriteLine(carManager.Add(new Car { BrandId = 3, ColorId = 6, DailyPrice = 1800, ModelYear = 1985, Description = "Sağlam getir yeter" }).Message);
         }
 
         private static void Lesson_06_02_2021()
         {
             carManager = new CarManager(new EfCarDal());
-            Console.WriteLine("|{0,4}|{1,10}|{2,10}|{3,6}|{4,8}|{5,30}|", "ID", "Marka", "Renk", "Model", "Fiyat", "Açıklama");
-            foreach (var car in carManager.GetCarsDetail())
+            
+            var carsDetails = carManager.GetCarsDetail();
+            if(carsDetails.Success)
+            {
+                Console.WriteLine("|{0,4}|{1,10}|{2,10}|{3,6}|{4,8}|{5,30}|", "ID", "Marka", "Renk", "Model", "Fiyat", "Açıklama");
+                foreach (var car in carsDetails.Data)
             {
                 Console.WriteLine("|{0,4}|{1,10}|{2,10}|{3,6}|{4,8}|{5,30}|", car.CarId, car.BrandName, car.ColorName, car.ModelYear, car.DailyPrice, car.Description);
             }
             Console.WriteLine();
+            } else
+            {
+                Console.WriteLine(carsDetails.Message);
+            }
         }
-
         private static void Homework_03_02_2021()
         {
             carManager = new CarManager(new EfCarDal());
@@ -74,12 +84,18 @@ namespace ConsoleUI
             carManager.Add(new Car { BrandId = 1, ColorId = 1, DailyPrice = 1, ModelYear = 1998, Description = "M" });
             */
 
-            Console.WriteLine("|{0,4}|{1,10}|{2,10}|{3,6}|{4,8}|{5,50}|", "ID", "Marka", "Renk", "Model", "Fiyat", "Açıklama");
-            foreach (var car in cars)
+            if(cars.Success)
             {
-                Console.WriteLine("|{0,4}|{1,10}|{2,10}|{3,6}|{4,8}|{5,50}|", car.CarId, car.BrandId, car.ColorId, car.ModelYear, car.DailyPrice, car.Description);
+                Console.WriteLine("|{0,4}|{1,10}|{2,10}|{3,6}|{4,8}|{5,50}|", "ID", "Marka", "Renk", "Model", "Fiyat", "Açıklama");
+                foreach (var car in cars.Data)
+                {
+                    Console.WriteLine("|{0,4}|{1,10}|{2,10}|{3,6}|{4,8}|{5,50}|", car.CarId, car.BrandId, car.ColorId, car.ModelYear, car.DailyPrice, car.Description);
+                }
+                Console.WriteLine();
+            } else
+            {
+                Console.WriteLine(cars.Message);
             }
-            Console.WriteLine();
         }
     }
 }

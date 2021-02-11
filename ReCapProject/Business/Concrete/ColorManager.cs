@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
@@ -14,29 +16,47 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        public void Add(Color entity)
+        public Result Add(Color entity)
         {
             _colorDal.Add(entity);
+            return new SuccessResult(Messages.AddColorMessage);
         }
 
-        public void Delete(Color entity)
+        public Result Delete(Color entity)
         {
             _colorDal.Delete(entity);
+            return new SuccessResult(Messages.DeleteColorMessage);
         }
 
-        public Color Get(int id)
+        public DataResult<Color> Get(int id)
         {
-            return _colorDal.Get(p => p.ColorId == id);
+            Color color =  _colorDal.Get(p => p.ColorId == id);
+            if(color == null)
+            {
+                return new ErrorDataResult<Color>(Messages.GetErrorColorMessage);
+            } else
+            {
+                return new SuccessDataResult<Color>(color,Messages.GetErrorColorMessage);
+            }
         }
 
-        public List<Color> GetAll()
+        public DataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll();
+            List<Color> colors =  _colorDal.GetAll();
+            if (colors == null)
+            {
+                return new ErrorDataResult<List<Color>>(Messages.GetErrorColorMessage);
+            }
+            else
+            {
+                return new SuccessDataResult<List<Color>>(colors, Messages.GetErrorColorMessage);
+            }
         }
 
-        public void Update(Color entity)
+        public Result Update(Color entity)
         {
             _colorDal.Update(entity);
+            return new SuccessResult(Messages.EditColorMessage);
         }
     }
 }

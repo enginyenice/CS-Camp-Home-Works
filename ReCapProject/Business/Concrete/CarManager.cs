@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -16,47 +18,94 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car entity)
+        public Result Add(Car entity)
         {
+
             if (entity.Description.Length >= 2 && entity.DailyPrice > 0)
+            {
                 _carDal.Add(entity);
-            else
-                Console.WriteLine("Araba açıklaması en az 2 karakterden oluşmalıdır.\nGünlük fiyatı 0 liradan büyük olmalıdır.");
+                return new SuccessResult(Messages.AddCarMessage);
+            }
+            else { 
+                return new ErrorResult(Messages.AddErrorCarMessage);
+            }
         }
 
-        public void Delete(Car entity)
+        public Result Delete(Car entity)
         {
             _carDal.Delete(entity);
+            return new SuccessResult(Messages.DeleteCarMessage);
         }
 
-        public Car Get(int id)
+        public DataResult<Car> Get(int id)
         {
-            return _carDal.Get(p => p.CarId == id);
+            Car car = _carDal.Get(p => p.CarId == id);
+            if(car == null)
+            {
+                return new ErrorDataResult<Car>(Messages.GetErrorCarMessage);
+            } else
+            {
+                return new SuccessDataResult<Car>(car,Messages.GetErrorCarMessage);
+            }
         }
 
-        public List<Car> GetAll()
+        public DataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            List<Car> cars =  _carDal.GetAll();
+            if (cars == null)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.GetErrorCarMessage);
+            }
+            else
+            {
+                return new SuccessDataResult<List<Car>>(cars, Messages.GetErrorCarMessage);
+            }
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
+        public DataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
-            return _carDal.GetAll(p => p.BrandId == brandId);
+            List<Car> cars = _carDal.GetAll(p => p.BrandId == brandId);
+            if (cars == null)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.GetErrorCarMessage);
+            }
+            else
+            {
+                return new SuccessDataResult<List<Car>>(cars, Messages.GetErrorCarMessage);
+            }
         }
 
-        public List<Car> GetCarsByColorId(int colorId)
+        public DataResult<List<Car>> GetCarsByColorId(int colorId)
         {
-            return _carDal.GetAll(p => p.ColorId == colorId);
+            List<Car> cars = _carDal.GetAll(p => p.ColorId == colorId);
+            if (cars == null)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.GetErrorCarMessage);
+            }
+            else
+            {
+                return new SuccessDataResult<List<Car>>(cars, Messages.GetErrorCarMessage);
+            }
         }
 
-        public List<CarDetailDto> GetCarsDetail()
+        public DataResult<List<CarDetailDto>> GetCarsDetail()
         {
-            return _carDal.GetCarsDetail();
+            List<CarDetailDto> carDetails=  _carDal.GetCarsDetail();
+            if (carDetails == null)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>(Messages.GetErrorCarMessage);
+            }
+            else
+            {
+                return new SuccessDataResult<List<CarDetailDto>>(carDetails, Messages.GetErrorCarMessage);
+            }
+
         }
 
-        public void Update(Car entity)
+        public Result Update(Car entity)
         {
             _carDal.Update(entity);
+            return new SuccessResult(Messages.EditCarMessage);
         }
     }
 }
