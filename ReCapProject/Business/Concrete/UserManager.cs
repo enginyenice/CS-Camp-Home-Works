@@ -3,15 +3,13 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
     public class UserManager : IUserService
     {
-        IUserDal _userDal;
+        private IUserDal _userDal;
 
         public UserManager(IUserDal userDal)
         {
@@ -32,7 +30,6 @@ namespace Business.Concrete
 
         public DataResult<User> Get(int id)
         {
-
             User user = _userDal.Get(p => p.Id == id);
             if (user == null)
             {
@@ -54,6 +51,19 @@ namespace Business.Concrete
             else
             {
                 return new SuccessDataResult<List<User>>(users, Messages.GetSuccessUserMessage);
+            }
+        }
+
+        public DataResult<User> GetByEmail(string email)
+        {
+            User user = _userDal.Get(p => p.Email == email);
+            if (user == null)
+            {
+                return new ErrorDataResult<User>(Messages.GetErrorUserMessage);
+            }
+            else
+            {
+                return new SuccessDataResult<User>(user, Messages.GetSuccessUserMessage);
             }
         }
 

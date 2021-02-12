@@ -30,8 +30,7 @@ namespace Business.Concrete
 
         public DataResult<Brand> Get(int id)
         {
-            
-            Brand brand = _brandDal.Get(p => p.BrandId == id);
+            Brand brand = _brandDal.Get(p => p.Id == id);
 
             if (brand == null)
             {
@@ -39,17 +38,13 @@ namespace Business.Concrete
             }
             else
             {
-                return   new SuccessDataResult<Brand>(brand, Messages.GetSuccessBrandMessage);
+                return new SuccessDataResult<Brand>(brand, Messages.GetSuccessBrandMessage);
             }
-            
-
-
-
         }
 
         public DataResult<List<Brand>> GetAll()
         {
-            List<Brand> brands =  _brandDal.GetAll();
+            List<Brand> brands = _brandDal.GetAll();
             if (brands == null)
             {
                 return new ErrorDataResult<List<Brand>>(Messages.GetErrorBrandMessage);
@@ -58,7 +53,6 @@ namespace Business.Concrete
             {
                 return new SuccessDataResult<List<Brand>>(brands, Messages.GetSuccessBrandMessage);
             }
-
         }
 
         public Result Update(Brand entity)

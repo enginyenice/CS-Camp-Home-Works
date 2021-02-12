@@ -30,19 +30,20 @@ namespace Business.Concrete
 
         public DataResult<Color> Get(int id)
         {
-            Color color =  _colorDal.Get(p => p.ColorId == id);
-            if(color == null)
+            Color color = _colorDal.Get(p => p.Id == id);
+            if (color == null)
             {
                 return new ErrorDataResult<Color>(Messages.GetErrorColorMessage);
-            } else
+            }
+            else
             {
-                return new SuccessDataResult<Color>(color,Messages.GetErrorColorMessage);
+                return new SuccessDataResult<Color>(color, Messages.GetErrorColorMessage);
             }
         }
 
         public DataResult<List<Color>> GetAll()
         {
-            List<Color> colors =  _colorDal.GetAll();
+            List<Color> colors = _colorDal.GetAll();
             if (colors == null)
             {
                 return new ErrorDataResult<List<Color>>(Messages.GetErrorColorMessage);

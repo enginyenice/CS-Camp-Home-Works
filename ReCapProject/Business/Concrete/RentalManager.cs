@@ -3,15 +3,13 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {
-        IRentalDal _rentalDal;
+        private IRentalDal _rentalDal;
 
         public RentalManager(IRentalDal rentalDal)
         {
@@ -20,8 +18,16 @@ namespace Business.Concrete
 
         public Result Add(Rental entity)
         {
-            _rentalDal.Add(entity);
-            return new SuccessResult(Messages.AddRentalMessage);
+            var isDeliveryControl = IsDelivery(entity.CarId);
+            if (isDeliveryControl.Success)
+            {
+                _rentalDal.Add(entity);
+                return new SuccessResult(Messages.AddRentalMessage);
+            }
+            else
+            {
+                return new ErrorResult(isDeliveryControl.Message);
+            }
         }
 
         public Result Delete(Rental entity)
@@ -54,6 +60,22 @@ namespace Business.Concrete
             {
                 return new SuccessDataResult<List<Rental>>(rentals, Messages.GetSuccessRentalMessage);
             }
+        }
+
+        public DataResult<bool> IsDelivery(int carId)
+        {
+            List<Rental> isDeliveryCarList = _rentalDal.GetAll(p => p.CarId == carId);
+            if (isDeliveryCarList.Count > 0)
+            {
+                foreach (var rentalCar in isDeliveryCarList)
+                {
+                    if (rentalCar.RentDate != null)
+                    {
+                        return new ErrorDataResult<bool>(false, Messages.CarNotAvaible);
+                    }
+                }
+            }
+            return new SuccessDataResult<bool>(true, Messages.CarAvaible);
         }
 
         public Result Update(Rental entity)

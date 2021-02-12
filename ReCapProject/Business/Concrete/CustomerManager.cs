@@ -3,15 +3,13 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
     public class CustomerManager : ICustomerService
     {
-        ICustomerDal _customerDal;
+        private ICustomerDal _customerDal;
 
         public CustomerManager(ICustomerDal customerDal)
         {
@@ -33,10 +31,11 @@ namespace Business.Concrete
         public DataResult<Customer> Get(int id)
         {
             Customer customer = _customerDal.Get(p => p.Id == id);
-            if(customer == null)
+            if (customer == null)
             {
                 return new ErrorDataResult<Customer>(Messages.GetErrorCustomerMessage);
-            } else
+            }
+            else
             {
                 return new SuccessDataResult<Customer>(customer, Messages.GetSuccessCustomerMessage);
             }

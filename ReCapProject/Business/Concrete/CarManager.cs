@@ -4,7 +4,6 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
-using System;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -20,13 +19,13 @@ namespace Business.Concrete
 
         public Result Add(Car entity)
         {
-
             if (entity.Description.Length >= 2 && entity.DailyPrice > 0)
             {
                 _carDal.Add(entity);
                 return new SuccessResult(Messages.AddCarMessage);
             }
-            else { 
+            else
+            {
                 return new ErrorResult(Messages.AddErrorCarMessage);
             }
         }
@@ -39,19 +38,20 @@ namespace Business.Concrete
 
         public DataResult<Car> Get(int id)
         {
-            Car car = _carDal.Get(p => p.CarId == id);
-            if(car == null)
+            Car car = _carDal.Get(p => p.Id == id);
+            if (car == null)
             {
                 return new ErrorDataResult<Car>(Messages.GetErrorCarMessage);
-            } else
+            }
+            else
             {
-                return new SuccessDataResult<Car>(car,Messages.GetErrorCarMessage);
+                return new SuccessDataResult<Car>(car, Messages.GetErrorCarMessage);
             }
         }
 
         public DataResult<List<Car>> GetAll()
         {
-            List<Car> cars =  _carDal.GetAll();
+            List<Car> cars = _carDal.GetAll();
             if (cars == null)
             {
                 return new ErrorDataResult<List<Car>>(Messages.GetErrorCarMessage);
@@ -90,7 +90,7 @@ namespace Business.Concrete
 
         public DataResult<List<CarDetailDto>> GetCarsDetail()
         {
-            List<CarDetailDto> carDetails=  _carDal.GetCarsDetail();
+            List<CarDetailDto> carDetails = _carDal.GetCarsDetail();
             if (carDetails == null)
             {
                 return new ErrorDataResult<List<CarDetailDto>>(Messages.GetErrorCarMessage);
@@ -99,7 +99,6 @@ namespace Business.Concrete
             {
                 return new SuccessDataResult<List<CarDetailDto>>(carDetails, Messages.GetErrorCarMessage);
             }
-
         }
 
         public Result Update(Car entity)
