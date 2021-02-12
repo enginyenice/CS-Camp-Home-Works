@@ -20,8 +20,8 @@ namespace ConsoleUI
 
             //10 02 2021 Ders Ödevi
             //CreateCustomer(); // Müşteri oluşturur.
-            // RentalCarAdd();
-            RentalDeliverCar();
+            //RentalCarAdd();
+            //RentalDeliverCar();
         }
 
         private static void RentalDeliverCar()

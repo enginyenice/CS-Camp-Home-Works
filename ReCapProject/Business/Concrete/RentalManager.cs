@@ -64,18 +64,11 @@ namespace Business.Concrete
 
         public DataResult<bool> IsDelivery(int carId)
         {
-            List<Rental> isDeliveryCarList = _rentalDal.GetAll(p => p.CarId == carId);
-            if (isDeliveryCarList.Count > 0)
-            {
-                foreach (var rentalCar in isDeliveryCarList)
-                {
-                    if (rentalCar.ReturnDate == null)
-                    {
-                        return new ErrorDataResult<bool>(false, Messages.CarNotAvaible);
-                    }
-                }
-            }
-            return new SuccessDataResult<bool>(true, Messages.CarAvaible);
+            Rental isDeliveryCar = _rentalDal.Get(p => p.CarId == carId && p.ReturnDate == null);
+            if (_rentalDal.Get(p => p.CarId == carId && p.ReturnDate == null) != null)
+                return new ErrorDataResult<bool>(false, Messages.CarNotAvaible);
+            else
+                return new SuccessDataResult<bool>(true, Messages.CarAvaible);
         }
 
         public Result Update(Rental entity)
