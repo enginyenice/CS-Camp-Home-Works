@@ -69,7 +69,7 @@ namespace Business.Concrete
             {
                 foreach (var rentalCar in isDeliveryCarList)
                 {
-                    if (rentalCar.RentDate != null)
+                    if (rentalCar.ReturnDate == null)
                     {
                         return new ErrorDataResult<bool>(false, Messages.CarNotAvaible);
                     }

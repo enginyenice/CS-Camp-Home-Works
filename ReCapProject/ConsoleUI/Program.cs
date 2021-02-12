@@ -20,7 +20,18 @@ namespace ConsoleUI
 
             //10 02 2021 Ders Ödevi
             //CreateCustomer(); // Müşteri oluşturur.
-            RentalCarAdd();
+           // RentalCarAdd();
+            RentalDeliverCar();
+
+            
+        }
+
+        private static void RentalDeliverCar()
+        {
+            rentalManager = new RentalManager(new EfRentalDal());
+            Rental deliverCar = rentalManager.Get(1003).Data;
+            deliverCar.ReturnDate = DateTime.Now;
+            Console.WriteLine(rentalManager.Update(deliverCar).Message);
         }
 
         private static void RentalCarAdd()
@@ -30,7 +41,7 @@ namespace ConsoleUI
 
             for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine(rentalManager.Add(new Rental { CarId = rastgele.Next(1, 6), CustomerId = 1, RentDate = DateTime.Now, ReturnDate = new DateTime(2021, 03, 12) }).Message);
+                Console.WriteLine(rentalManager.Add(new Rental { CarId = rastgele.Next(1, 6), CustomerId = 1, RentDate = DateTime.Now, ReturnDate=null }).Message);
             }
         }
 
