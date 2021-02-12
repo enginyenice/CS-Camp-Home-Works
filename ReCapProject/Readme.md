@@ -1,4 +1,49 @@
 
+## 10.02.2021 - 4. Ödev
+
+CarRental projenizde;
+
+Kullanıcılar tablosu oluşturunuz. Users-->Id,FirstName,LastName,Email,Password
+
+Müşteriler tablosu oluşturunuz. Customers-->UserId,CompanyName
+
+Kullanıcılar ve müşteriler ilişkilidir.
+
+Arabanın kiralanma bilgisini tutan tablo oluşturunuz. Rentals-->Id, CarId, CustomerId, RentDate(Kiralama Tarihi), ReturnDate(Teslim Tarihi). Araba teslim edilmemişse ReturnDate null'dır.
+
+Projenizde bu entity'leri oluşturunuz.
+
+CRUD operasyonlarını yazınız.
+
+Yeni müşteriler ekleyiniz.
+
+Arabayı kiralama imkanını kodlayınız. Rental-->Add
+
+Arabanın kiralanabilmesi için arabanın teslim edilmesi gerekmektedir.
+
+## 10.02.2021 - 1. Ödev
+
+Car Rental Projenizde;
+
+Core katmanında Results yapılandırması yapınız.
+
+Daha önce geliştirdiğiniz tüm Business sınıflarını bu yapıya göre refactor (kodu iyileştirme) ediniz.
+
+## 06.02.2021
+
+Not : İsteyenler Northwind projesindeki Core katmanını da ekleyebilir ama pekiştirmek için yeniden yazmanızı öneririm. Bu şekilde yapmak isteyenler CarRental/Solution Explorer Sağ Tık / Add /Existing Project/ Northwind içindeki Core klasöründe Core.csproj dosyasını ekleyebilirler. Bu şekilde yapanlar aşağıdaki 3. adımdan devam edebilirler.
+
+Önerim aşağıdaki gibi yeniden yapmanızdır.
+
+CarRental Projenizde Core katmanı oluşturunuz.
+IEntity, IDto, IEntityRepository, EfEntityRepositoryBase dosyalarınızı 9. gün dersindeki gibi oluşturup ekleyiniz.
+Car, Brand, Color sınıflarınız için tüm CRUD operasyonlarını hazır hale getiriniz.
+Console'da Tüm CRUD operasyonlarınızı Car, Brand, Model nesneleriniz için test ediniz. GetAll, GetById, Insert, Update, Delete.
+Arabaları şu bilgiler olacak şekilde listeleyiniz. CarName, BrandName, ColorName, DailyPrice. (İpucu : IDto oluşturup 3 tabloya join yazınız)
+Kodlarınızı Github hesabınızda paylaşıp link veriniz.
+Başkalarının kodlarını inceleyiniz. Beğenirseniz yıldız veriniz.
+
+
 ## 03.02.2021
 Araba Kiralama projemiz üzerinde çalışmaya devam edeceğiz.
 
