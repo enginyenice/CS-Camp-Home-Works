@@ -28,5 +28,26 @@ namespace Business.Constants
         public static string EditColorMessage = "Renk başarıyla güncellendi.";
         public static string GetSuccessColorMessage = "Renk bilgisi / bilgileri getirildi.";
         public static string GetErrorColorMessage = "Renk bilgisi / bilgileri getirilemedi.";
+
+        //Customer
+        public static string AddCustomerMessage = "Müşteri başarıyla eklendi.";
+        public static string DeleteCustomerMessage = "Müşteri başarıyla silindi.";
+        public static string EditCustomerMessage = "Müşteri başarıyla güncellendi.";
+        public static string GetSuccessCustomerMessage = "Müşteri bilgisi / bilgileri getirildi.";
+        public static string GetErrorCustomerMessage = "Müşteri bilgisi / bilgileri getirilemedi.";
+
+        //Rental
+        public static string AddRentalMessage = "Araç kiralama işlemi başarıyla eklendi.";
+        public static string DeleteRentalMessage = "Araç kiralama işlemi başarıyla silindi.";
+        public static string EditRentalMessage = "Araç kiralama işlemi başarıyla güncellendi.";
+        public static string GetSuccessRentalMessage = "Araç kiralama işlemi bilgisi / bilgileri getirildi.";
+        public static string GetErrorRentalMessage = "Araç kiralama işlemi bilgisi / bilgileri getirilemedi.";
+
+        //User
+        public static string AddUserMessage = "Üye başarıyla eklendi.";
+        public static string DeleteUserMessage = "Üye başarıyla silindi.";
+        public static string EditUserMessage = "Üye başarıyla güncellendi.";
+        public static string GetSuccessUserMessage = "Üye bilgisi / bilgileri getirildi.";
+        public static string GetErrorUserMessage = "Üye bilgisi / bilgileri getirilemedi.";
     }
 }
