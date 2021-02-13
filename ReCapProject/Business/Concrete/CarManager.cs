@@ -45,20 +45,20 @@ namespace Business.Concrete
             }
             else
             {
-                return new SuccessDataResult<Car>(car, Messages.GetErrorCarMessage);
+                return new SuccessDataResult<Car>(car, Messages.GetSuccessCarMessage);
             }
         }
 
         public DataResult<List<Car>> GetAll()
         {
             List<Car> cars = _carDal.GetAll();
-            if (cars == null)
+            if (cars.Count == 0)
             {
                 return new ErrorDataResult<List<Car>>(Messages.GetErrorCarMessage);
             }
             else
             {
-                return new SuccessDataResult<List<Car>>(cars, Messages.GetErrorCarMessage);
+                return new SuccessDataResult<List<Car>>(cars, Messages.GetSuccessCarMessage);
             }
         }
 
