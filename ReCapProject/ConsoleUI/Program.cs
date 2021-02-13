@@ -22,12 +22,58 @@ namespace ConsoleUI
             //CreateCustomer(); // Müşteri oluşturur.
             //RentalCarAdd();
             //RentalDeliverCar();
+            RentalDetails();
+        }
+
+        private static void RentalDetails()
+        {
+            rentalManager = new RentalManager(new EfRentalDal());
+            var RentalDetails = rentalManager.GetAllRentalDetails();
+            if (RentalDetails.Success)
+            {
+                Console.WriteLine("|{0,4}|{1,15}|{2,10}|{3,10}|{4,10}|{5,10}|{6,10}|{7,30}|{8,6}|{9,15}|{10,15}|",
+                    "Id",
+                    "Firma Adı",
+                    "Ad",
+                    "Soyad",
+                    "Marka",
+                    "Renk",
+                    "Model Yılı",
+                    "Açıklama",
+                    "Ücret",
+                    "Kiralama Tarihi",
+                    "Teslim Tarihi");
+                foreach (var rental in RentalDetails.Data)
+                {
+                    DateTime returnDate = DateTime.Now;
+                    if (rental.ReturnDate != null)
+                    {
+                        returnDate = DateTime.Parse(rental.ReturnDate.ToString());
+                    }
+                    Console.WriteLine("|{0,4}|{1,15}|{2,10}|{3,10}|{4,10}|{5,10}|{6,10}|{7,30}|{8,6}|{9,15}|{10,15}|",
+                        rental.RentalId,
+                        rental.CompanyName,
+                        rental.FirstName,
+                        rental.LastName,
+                        rental.BrandName,
+                        rental.ColorName,
+                        rental.ModelYear,
+                        rental.CarDesctiption,
+                        rental.DailyPrice,
+                        rental.RentDate.ToShortDateString(),
+                        (rental.ReturnDate == null) ? "Teslim Edilmedi" : returnDate.ToShortDateString()
+
+                        );
+                }
+            }
+            else
+                Console.WriteLine(RentalDetails.Message);
         }
 
         private static void RentalDeliverCar()
         {
             rentalManager = new RentalManager(new EfRentalDal());
-            Rental deliverCar = rentalManager.Get(1003).Data;
+            Rental deliverCar = rentalManager.Get(5).Data;
             deliverCar.ReturnDate = DateTime.Now;
             Console.WriteLine(rentalManager.Update(deliverCar).Message);
         }
