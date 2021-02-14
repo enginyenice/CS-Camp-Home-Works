@@ -1,11 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -13,11 +8,13 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
-        ICarService _carService;
+        private readonly ICarService _carService;
+
         public CarsController(ICarService carService)
         {
             _carService = carService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -27,7 +24,7 @@ namespace WebAPI.Controllers
             else
                 return BadRequest(result);
         }
-        
+
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
